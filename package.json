@@ -1,0 +1,33 @@
+{
+  "name": "answernorth",
+  "description": "An evidence-first accelerator for Microsoft Fabric data agent evaluation.",
+  "license": "MIT",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "rayfin dev",
+    "dev:frontend": "npm run -w @rayfin-app/frontend dev",
+    "build": "npm run -w @rayfin-app/shared build && node scripts/validate-functions.mjs && npm run -w @rayfin-app/functions build && npm run -w @rayfin-app/data build && npm run -w @rayfin-app/frontend build",
+    "build:fabric": "npm run -w @rayfin-app/shared build && node scripts/validate-functions.mjs && npm run -w @rayfin-app/functions build && npm run -w @rayfin-app/data build && npm run -w @rayfin-app/frontend build:fabric",
+    "lint": "npm run -w @rayfin-app/frontend lint",
+    "preview": "npm run -w @rayfin-app/frontend preview",
+    "test": "npm run -w @rayfin-app/frontend test",
+    "test:watch": "npm run -w @rayfin-app/frontend test:watch",
+    "typecheck": "npm run -w @rayfin-app/shared build && node scripts/validate-functions.mjs && npm run -w @rayfin-app/functions build && tsc -b",
+    "rayfin:up": "rayfin up",
+    "functions:build": "npm run -w @rayfin-app/functions build",
+    "validate:functions": "npm run -w @rayfin-app/shared build && node scripts/validate-functions.mjs",
+    "check:publication": "node scripts/check-publication.mjs",
+    "test:backend": "node --test packages/functions/tests/*.test.mjs",
+    "test:evaluation": "python -B -m unittest discover -s evaluation -p test*.py"
+  },
+  "devDependencies": {
+    "@microsoft/rayfin-cli": "^1.36.0-alpha",
+    "@microsoft/rayfin-guide": "^1.36.0-alpha",
+    "typescript": "~5.7.2"
+  }
+}
